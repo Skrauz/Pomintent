@@ -1,29 +1,26 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link>
-  </nav>
-  <router-view/>
+  <Header :title="title" :subtitle="subtitle" />
+  <MenuBar />
+  <router-view />
+  <Footer />
 </template>
 
+<script>
+import Header from "./components/Header.vue";
+import MenuBar from "./components/MenuBar.vue";
+import Footer from "./components/Footer.vue"
+
+export default {
+  components: { Header, MenuBar, Footer },
+  data() {
+    return {
+      title: "Pomintent",
+      subtitle: "Habit oriented Pomodoro Timer",
+    };
+  },
+};
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
+@import "./style/css/style.css";
 </style>
