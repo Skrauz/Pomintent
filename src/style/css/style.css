@@ -18,7 +18,7 @@ body {
 
 nav {
   padding: 10px;
-  background-color: rgb(137, 180, 156);
+  background-color: rgb(91, 149, 182);
   display: flex;
   justify-content: space-evenly;
 }
@@ -65,7 +65,7 @@ nav a.router-link-exact-active {
   position: absolute;
   bottom: 0;
   width: 100%;
-  background: rgb(137, 180, 156);
+  background: rgb(91, 149, 182);
 }
 .footer p {
   margin: 8px;

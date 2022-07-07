@@ -1,18 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
 import Timer from '../views/Timer.vue'
 import Stats from '../views/Home.vue'
 import Settings from '../views/Home.vue'
-import Credits from '../views/Home.vue'
+import FaQ from '../views/Home.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
-  },
-  {
-    path: '/timer',
     name: 'timer',
     component: Timer
   },
@@ -27,9 +21,9 @@ const routes = [
     component: Settings
   },
   {
-    path: '/credits',
-    name: 'credits',
-    component: Credits
+    path: '/faq',
+    name: 'faq',
+    component: FaQ
   },
 ]
 
