@@ -41,7 +41,16 @@ nav a.router-link-exact-active {
   background-color: #e6e6e6;
 }
 
+#timer .buttonActive {
+  background-color: #e6e6e6;
+}
+#timer .buttonActive:hover {
+  background-color: rgb(255, 255, 255);
+  transition: background-color 0.1s ease-in-out;
+}
 #timer button {
+  cursor: pointer;
+  border: solid rgb(91, 149, 182) 2px;
   font-weight: bold;
   color: rgb(9, 9, 9);
   padding: 10px 20px;
