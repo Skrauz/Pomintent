@@ -41,12 +41,19 @@ nav a.router-link-exact-active {
   background-color: #e6e6e6;
 }
 
+#timer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+#timer .rightPanel,
+#timer .leftPanel {
+  width: 50%;
+  min-width: 400px;
+}
 #timer .buttonActive {
   background-color: #e6e6e6;
-}
-#timer .buttonActive:hover {
-  background-color: rgb(255, 255, 255);
-  transition: background-color 0.1s ease-in-out;
+  color: rgb(71, 57, 57);
 }
 #timer button {
   cursor: pointer;
@@ -54,11 +61,14 @@ nav a.router-link-exact-active {
   font-weight: bold;
   color: rgb(9, 9, 9);
   padding: 10px 20px;
-  margin: 0 5px;
+  margin: 5px;
   text-decoration: none;
   width: 200px;
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
+}
+#timer button.optionButton {
+  width: 90%;
 }
 #timer button:hover {
   background-color: #e6e6e6;

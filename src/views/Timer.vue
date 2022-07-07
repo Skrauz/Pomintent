@@ -1,9 +1,18 @@
 <template>
   <div id="timer">
-    <p id="clock">{{ millisToMinutesAndSeconds(time) }}</p>
-    <button ref="pomoButton" @click="startPom">Pomodoro</button>
-    <button @click="startShort">Short Break</button>
-    <button @click="startLong">Long Break</button>
+    <div class="leftPanel">
+      <button ref="pomoButton" @click="startPom" class="optionButton">
+        Pomodoro
+      </button>
+      <button @click="startShort" class="optionButton">Short Break</button>
+      <button @click="startLong" class="optionButton">Long Break</button>
+    </div>
+    <div class="rightPanel">
+      <p id="clock">{{ millisToMinutesAndSeconds(time) }}</p>
+      <button class="timerButton">Play</button>
+      <button class="timerButton">Pause</button>
+      <button class="timerButton">Reset</button>
+    </div>
   </div>
 </template>
 
@@ -16,17 +25,25 @@ export default {
       longLength: 10,
       time: 1500000,
       pomoInterval: null,
+      timerOn: false,
     };
   },
   methods: {
     startPom() {
-      this.$refs.pomoButton.classList.add("buttonActive");
-      this.time = this.pomLength;
-      this.pomoInterval = setInterval(() => {
-        this.time -= 1000;
-      }, 1000);
-      if (this.pomoInterval == 0) {
+      this.$refs.pomoButton.classList.toggle("buttonActive");
+      if (!this.timerOn) {
+        this.time = this.pomLength;
+        this.pomoInterval = setInterval(() => {
+          this.time -= 1000;
+        }, 1000);
+        this.timerOn = !this.timerOn;
+        if (this.pomoInterval == 0) {
+          clearInterval(this.pomoInterval);
+        }
+      } else {
         clearInterval(this.pomoInterval);
+        this.timerOn = !this.timerOn;
+        this.time = this.pomLength;
       }
     },
     startShort() {},

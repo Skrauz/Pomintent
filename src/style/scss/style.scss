@@ -15,6 +15,7 @@ $selected-color: rgb(255, 255, 255);
 $secondary-color: rgb(91, 149, 182);
 $selected-button: darken($color: $primary-color, $amount: 10);
 $primary-font-color: rgb(9, 9, 9);
+$selected-button-font-color: rgb(71, 57, 57);
 
 html {
     background-color: $primary-color;
@@ -57,60 +58,10 @@ nav {
     }
 
     a.router-link-exact-active {
-        color: rgb(71, 57, 57);
+        color: $selected-button-font-color;
         background-color: $selected-button;
     }
 }
 
-//Timer
-#timer {
-    .buttonActive {
-        background-color: $selected-button;
-        &:hover{
-            background-color: $selected-color;
-            transition: background-color 0.1s ease-in-out;
-        }
-    }
-
-    button {
-        cursor: pointer;
-        border: solid $secondary-color 2px;
-        font-weight: bold;
-        color: $primary-font-color;
-        padding: 10px 20px;
-        margin: 0 5px;
-        text-decoration: none;
-        width: 200px;
-        background-color: $primary-color;
-        border-radius: 20px;
-
-        &:hover {
-            background-color: $selected-button;
-            transition: background-color 0.1s ease-in-out;
-        }
-    }
-    #clock {
-        font-size: 100px;
-        font-weight: bold;
-        margin: 20px 0;
-    }
-}
-
-
-//Footer
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: $secondary-color;
-
-    p {
-        margin: 8px;
-    }
-
-    a {
-        text-decoration: none;
-        font-style: bold;
-        color: $primary-font-color;
-    }
-}
+@import 'timer';
+@import 'footer';
