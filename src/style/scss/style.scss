@@ -26,6 +26,16 @@ body {
     margin: 0;
 }
 
+h1, h2{
+    margin: 10px 0;
+}
+
+a{
+    text-decoration: none;
+    color: $primary-font-color;
+    font-weight: bold;
+}
+
 #app {
     margin: 0;
     font-family: $font-stack;
