@@ -25,9 +25,9 @@
     </div>
     <div class="timerButtons">
       <p id="clock">{{ millisToMinutesAndSeconds(time) }}</p>
-      <button class="timerButton playButton">Play</button>
-      <button class="timerButton pauseButton">Pause</button>
-      <button class="timerButton resetButton">Reset</button>
+      <button @click="playTimer" class="timerButton playButton">Play</button>
+      <button @click="pauseTimer" class="timerButton pauseButton">Pause</button>
+      <button @click="resetTimer" class="timerButton resetButton">Reset</button>
     </div>
   </div>
 </template>
