@@ -11,6 +11,16 @@
         color: $selected-button-font-color;
     }
 
+    input {
+        background-color: $secondary-color;
+        color: $primary-font-color;
+        border-radius: 20px;
+        border: none;
+        padding: 10px 20px;
+        margin: 5px;
+        width: 200px;
+    }
+
     button {
         cursor: pointer;
         border: solid $secondary-color 2px;
@@ -32,11 +42,21 @@
             background-color: $selected-button;
             transition: background-color 0.1s ease-in-out;
         }
+
+        &.playButton {
+            border: solid green 2px;
+        }
+        &.pauseButton {
+            border: solid red 2px;
+        }
+        &.resetButton {
+            border: solid navy 2px;
+        }
     }
 
     #clock {
         font-size: 100px;
         font-weight: bold;
-        margin: 20px 0;
+        margin: 0 0 20px 0;
     }
 }

@@ -17,10 +17,14 @@ export default {
   data() {
     return {
       title: "Pomintent",
-      subtitle: "Habit oriented Pomodoro Timer",
-      credit: "",
+      subtitle: "Intention oriented Pomodoro Timer",
     };
   },
+  methods: {
+    updateTitle(setting){
+      
+    }
+  }
 };
 </script>
 

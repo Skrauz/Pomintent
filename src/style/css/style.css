@@ -64,6 +64,15 @@ nav a.router-link-exact-active {
   background-color: #e6e6e6;
   color: rgb(71, 57, 57);
 }
+#timer input {
+  background-color: rgb(91, 149, 182);
+  color: rgb(9, 9, 9);
+  border-radius: 20px;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  width: 200px;
+}
 #timer button {
   cursor: pointer;
   border: solid rgb(91, 149, 182) 2px;
@@ -84,10 +93,19 @@ nav a.router-link-exact-active {
   background-color: #e6e6e6;
   transition: background-color 0.1s ease-in-out;
 }
+#timer button.playButton {
+  border: solid green 2px;
+}
+#timer button.pauseButton {
+  border: solid red 2px;
+}
+#timer button.resetButton {
+  border: solid navy 2px;
+}
 #timer #clock {
   font-size: 100px;
   font-weight: bold;
-  margin: 20px 0;
+  margin: 0 0 20px 0;
 }
 
 /* .footer {

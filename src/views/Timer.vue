@@ -1,5 +1,18 @@
 <template>
   <div id="timer">
+    <input
+      type="text"
+      v-model="intent"
+      name="intentInput"
+      placeholder="Your Intention Here"
+    />
+
+    <p id="clock">{{ millisToMinutesAndSeconds(time) }}</p>
+    <div class="timerButtons">
+      <button @click="playTimer" class="timerButton playButton">Play</button>
+      <button @click="pauseTimer" class="timerButton pauseButton">Pause</button>
+      <button @click="resetTimer" class="timerButton resetButton">Reset</button>
+    </div>
     <div class="optionsButtons">
       <button
         ref="pomoButton"
@@ -23,12 +36,6 @@
         Long Break
       </button>
     </div>
-    <div class="timerButtons">
-      <p id="clock">{{ millisToMinutesAndSeconds(time) }}</p>
-      <button @click="playTimer" class="timerButton playButton">Play</button>
-      <button @click="pauseTimer" class="timerButton pauseButton">Pause</button>
-      <button @click="resetTimer" class="timerButton resetButton">Reset</button>
-    </div>
   </div>
 </template>
 
@@ -39,56 +46,54 @@ export default {
       pomLength: 1500000,
       shortLength: 300000,
       longLength: 600000,
+      currentSetting: "",
       time: 1500000,
       pomoInterval: null,
       timerOn: false,
+      intent: "",
     };
   },
   methods: {
+    //timer button methods
+    playTimer(){
+      
+    },
+
     resetTimer(length) {
       clearInterval(this.pomoInterval);
-      this.timerOn = !this.timerOn;
+      this.timerOn = false;
       this.time = length;
     },
     startTimer(length) {
-      if (!this.timerOn) {
+      if (this.timerOn == false) {
         this.time = length;
+        this.timerOn = true;
         this.pomoInterval = setInterval(() => {
           this.time -= 1000;
           if (this.time < 0) {
             this.resetTimer(length);
-            this.$refs.longButton.classList.remove("buttonActive");
-            this.$refs.shortButton.classList.remove("buttonActive");
-            this.$refs.pomoButton.classList.remove("buttonActive");
           }
         }, 1000);
-        this.timerOn = !this.timerOn;
       } else {
         this.resetTimer(length);
       }
     },
     startPom() {
-      this.$refs.longButton.classList.remove("buttonActive");
-      this.$refs.shortButton.classList.remove("buttonActive");
-      this.$refs.pomoButton.classList.toggle("buttonActive");
       if (this.timerOn) {
         this.resetTimer(this.pomLength);
       }
       this.startTimer(this.pomLength);
     },
     startShort() {
-      this.$refs.longButton.classList.remove("buttonActive");
-      this.$refs.pomoButton.classList.remove("buttonActive");
-      this.$refs.shortButton.classList.toggle("buttonActive");
       if (this.timerOn) {
         this.resetTimer(this.shortLength);
       }
       this.startTimer(this.shortLength);
     },
     startLong() {
-      this.$refs.pomoButton.classList.remove("buttonActive");
+      /*       this.$refs.pomoButton.classList.remove("buttonActive");
       this.$refs.shortButton.classList.remove("buttonActive");
-      this.$refs.longButton.classList.toggle("buttonActive");
+      this.$refs.longButton.classList.toggle("buttonActive"); */
       if (this.timerOn) {
         this.resetTimer(this.longLength);
       }
