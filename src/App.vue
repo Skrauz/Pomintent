@@ -2,7 +2,7 @@
   <div class="content">
     <Header :title="title" :subtitle="subtitle" />
     <MenuBar />
-    <router-view />
+    <router-view @titleDynamic="renderDynamicTitle" />
     <!-- <Footer /> -->
   </div>
 </template>
@@ -14,6 +14,9 @@ import Footer from "./components/Footer.vue";
 
 export default {
   components: { Header, MenuBar, Footer },
+  created() {
+    document.title = "Pomo (25:00)"
+  },
   data() {
     return {
       title: "Pomintent",
@@ -21,8 +24,8 @@ export default {
     };
   },
   methods: {
-    updateTitle(setting){
-      
+    renderDynamicTitle(time, settingName){
+      document.title = settingName + ' (' + time +')';
     }
   }
 };

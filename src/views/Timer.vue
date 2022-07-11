@@ -1,5 +1,6 @@
 <template>
   <div id="timer">
+    
     <input
       type="text"
       v-model="intent"
@@ -7,7 +8,8 @@
       placeholder="Your Intention Here"
     />
 
-    <p id="clock">{{ millisToMinutesAndSeconds(time) }}</p>
+    <p ref="clock" id="clock">{{ millisToMinutesAndSeconds(time) }}</p>
+
     <div class="timerButtons">
       <button
         ref="playButton"
@@ -58,6 +60,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -72,6 +75,10 @@ export default {
     };
   },
   methods: {
+    updateTitle(){
+      this.$emit('titleDynamic', this.millisToMinutesAndSeconds(this.time), this.settingNameDeterminer(this.currentSetting));
+    },  
+
     //timer button methods
     continueTimer() {
       if (this.currentSetting == 0) {
@@ -84,12 +91,7 @@ export default {
 
       clearInterval(this.pomoInterval);
       this.timerOn = true;
-      this.pomoInterval = setInterval(() => {
-        this.time -= 1000;
-        if (this.time < 0) {
-          this.resetTimer(this.currentSetting);
-        }
-      }, 1000);
+      this.timerHandler(this.currentSetting);
     },
     pauseTimer() {
       if (this.timerOn) {
@@ -112,6 +114,26 @@ export default {
       }
     },
 
+    settingNameDeterminer(setting){
+      if (setting == 0) {
+        return "Pomo";
+      } else if (setting == 1) {
+        return "Break";
+      } else if (setting == 2) {
+        return "Long Break";
+      }
+    },
+
+    timerHandler(setting) {
+      this.pomoInterval = setInterval(() => {
+          this.time -= 1000;
+          this.updateTitle();
+          if (this.time < 0) {
+            this.resetTimer(setting);
+          }
+        }, 1000);
+    },
+
     resetTimer(setting) {
       this.$refs.playButton.classList.remove("buttonActive");
       this.$refs.pauseButton.classList.remove("buttonActive");
@@ -120,8 +142,12 @@ export default {
       clearInterval(this.pomoInterval);
       this.timerOn = false;
       this.time = this.lengthRetriever(setting);
+      this.updateTitle()
     },
+
+
     startTimer(setting) {
+      this.updateTitle();
       if (this.timerOn == false) {
         this.$refs.playButton.classList.add("buttonActive");
         this.$refs.pauseButton.classList.remove("buttonActive");
@@ -129,12 +155,7 @@ export default {
 
         this.time = this.lengthRetriever(setting);
         this.timerOn = true;
-        this.pomoInterval = setInterval(() => {
-          this.time -= 1000;
-          if (this.time < 0) {
-            this.resetTimer(this.currentSetting);
-          }
-        }, 1000);
+        this.timerHandler(this.currentSetting);
       } else {
         this.resetTimer(this.currentSetting);
       }
@@ -170,7 +191,7 @@ export default {
 
       this.currentSetting = 2;
       if (this.timerOn) {
-        this.resetTimer(this.longLength);
+        this.resetTimer(this.currentSetting);
       }
       this.startTimer(this.currentSetting);
     },
