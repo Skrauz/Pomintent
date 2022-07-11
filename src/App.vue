@@ -1,23 +1,30 @@
 <template>
-  <Header :title="title" :subtitle="subtitle" />
-  <MenuBar />
-  <router-view />
-  <Footer />
+  <div class="content">
+    <Header :title="title" :subtitle="subtitle" />
+    <MenuBar />
+    <router-view />
+    <!-- <Footer /> -->
+  </div>
 </template>
 
 <script>
 import Header from "./components/Header.vue";
 import MenuBar from "./components/MenuBar.vue";
-import Footer from "./components/Footer.vue"
+import Footer from "./components/Footer.vue";
 
 export default {
   components: { Header, MenuBar, Footer },
   data() {
     return {
       title: "Pomintent",
-      subtitle: "Habit oriented Pomodoro Timer",
+      subtitle: "Intention oriented Pomodoro Timer",
     };
   },
+  methods: {
+    updateTitle(setting){
+      
+    }
+  }
 };
 </script>
 

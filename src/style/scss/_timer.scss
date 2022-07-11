@@ -1,0 +1,62 @@
+#timer {
+    margin: 10px 0;
+    .rightPanel,
+    .leftPanel {
+        width: 50%;
+        min-width: 400px;
+        height: 1600px;
+    }
+    .buttonActive {
+        background-color: $selected-button;
+        color: $selected-button-font-color;
+    }
+
+    input {
+        background-color: $secondary-color;
+        color: $primary-font-color;
+        border-radius: 20px;
+        border: none;
+        padding: 10px 20px;
+        margin: 5px;
+        width: 200px;
+    }
+
+    button {
+        cursor: pointer;
+        border: solid $secondary-color 2px;
+        font-weight: bold;
+        color: $primary-font-color;
+        padding: 10px 20px;
+        margin: 5px;
+        text-decoration: none;
+        width: 200px;
+        background-color: $primary-color;
+        border-radius: 20px;
+
+        &.optionButton {
+            width: 90%;
+            max-width: 400px;
+        }
+
+        &:hover {
+            background-color: $selected-button;
+            transition: background-color 0.1s ease-in-out;
+        }
+
+        &.playButton {
+            border: solid green 2px;
+        }
+        &.pauseButton {
+            border: solid red 2px;
+        }
+        &.resetButton {
+            border: solid navy 2px;
+        }
+    }
+
+    #clock {
+        font-size: 100px;
+        font-weight: bold;
+        margin: 0 0 20px 0;
+    }
+}

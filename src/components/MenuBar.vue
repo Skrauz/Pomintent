@@ -2,7 +2,7 @@
   <div id="menuBar">
     <nav>
       <router-link to="/">Timer</router-link>
-      <router-link to="/stats">Stats</router-link>
+      <router-link to="/log">Log</router-link>
       <router-link to="/settings">Settings</router-link>
       <router-link to="/faq">FaQ</router-link>
     </nav>
