@@ -1,6 +1,7 @@
 <template>
   <div id="timerPage">
-    <MenuBar />
+    <MenuBar @modalSignal="toggleModal" />
+    <ModalWindow v-if="showModal" :option="modalOption" />
     <div id="timer">
       <input
         type="text"
@@ -63,13 +64,18 @@
 
 <script>
 import MenuBar from "../components/MenuBar.vue";
+import ModalWindow from "../components/ModalWindow.vue";
 
 export default {
   components: {
     MenuBar,
+    ModalWindow,
   },
   data() {
     return {
+      showModal: false,
+      modalOption: "",
+
       pomLength: 1500000,
       shortLength: 300000,
       longLength: 600000,
@@ -81,6 +87,11 @@ export default {
     };
   },
   methods: {
+    toggleModal(setting) {
+      this.modalOption = setting;
+      this.showModal = !this.showModal;
+    },
+
     updateTitle() {
       this.$emit(
         "titleDynamic",

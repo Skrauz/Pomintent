@@ -1,15 +1,21 @@
 <template>
   <div id="menuBar">
     <nav>
-      <button>Log</button>
-      <button>Settings</button>
-      <button>FaQ</button>
+      <button @click="$emit('modalSignal', 'log')">Log</button>
+      <button @click="$emit('modalSignal', 'settings')">Settings</button>
+      <button @click="$emit('modalSignal', 'faq')">FaQ</button>
     </nav>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data(){
+    return{
+      
+    }
+  }
+};
 </script>
 
 <style>
