@@ -1,10 +1,9 @@
 <template>
   <div id="menuBar">
     <nav>
-      <router-link to="/">Timer</router-link>
-      <router-link to="/log">Log</router-link>
-      <router-link to="/settings">Settings</router-link>
-      <router-link to="/faq">FaQ</router-link>
+      <button>Log</button>
+      <button>Settings</button>
+      <button>FaQ</button>
     </nav>
   </div>
 </template>

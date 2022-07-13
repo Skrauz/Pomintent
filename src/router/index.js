@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Timer from '../views/Timer.vue'
-import Log from '../views/Home.vue'
-import Settings from '../views/Home.vue'
-import FaQ from '../views/Home.vue'
+import Page404 from '../views/404.vue'
+
 
 const routes = [
   {
@@ -10,21 +9,8 @@ const routes = [
     name: 'timer',
     component: Timer
   },
-  {
-    path: '/log',
-    name: 'log',
-    component: Log
-  },
-  {
-    path: '/settings',
-    name: 'settings',
-    component: Settings
-  },
-  {
-    path: '/faq',
-    name: 'faq',
-    component: FaQ
-  },
+  { path: '/404', component: Page404 },  
+  { path: '/:pathMatch(.*)*', redirect: '/404' },
 ]
 
 const router = createRouter({
