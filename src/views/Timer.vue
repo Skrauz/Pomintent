@@ -1,69 +1,81 @@
 <template>
-  <div id="timer">
-    
-    <input
-      type="text"
-      v-model="intent"
-      name="intentInput"
-      placeholder="Your Intention Here"
-    />
+  <div id="timerPage">
+    <MenuBar @modalSignal="toggleModal" />
+    <ModalWindow v-if="showModal" :option="modalOption" @modalCloseSignal="toggleModal" />
+    <div id="timer">
+      <input
+        type="text"
+        v-model="intent"
+        name="intentInput"
+        placeholder="Your Intention Here"
+      />
 
-    <p ref="clock" id="clock">{{ millisToMinutesAndSeconds(time) }}</p>
+      <p ref="clock" id="clock">{{ millisToMinutesAndSeconds(time) }}</p>
 
-    <div class="timerButtons">
-      <button
-        ref="playButton"
-        @click="continueTimer"
-        class="timerButton playButton"
-      >
-        Play
-      </button>
-      <button
-        @click="pauseTimer"
-        ref="pauseButton"
-        class="timerButton pauseButton"
-      >
-        Pause
-      </button>
-      <button
-        ref="resetButton"
-        @click="resetTimer(this.currentSetting)"
-        class="timerButton resetButton"
-      >
-        Reset
-      </button>
-    </div>
-    <div class="optionsButtons">
-      <button
-        ref="pomoButton"
-        @click="startPom"
-        class="optionButton pomoButton"
-      >
-        Pomodoro
-      </button>
-      <button
-        ref="shortButton"
-        @click="startShort"
-        class="optionButton sBreakButton"
-      >
-        Short Break
-      </button>
-      <button
-        ref="longButton"
-        @click="startLong"
-        class="optionButton lBreakButton"
-      >
-        Long Break
-      </button>
+      <div class="timerButtons">
+        <button
+          ref="playButton"
+          @click="continueTimer"
+          class="timerButton playButton"
+        >
+          Play
+        </button>
+        <button
+          @click="pauseTimer"
+          ref="pauseButton"
+          class="timerButton pauseButton"
+        >
+          Pause
+        </button>
+        <button
+          ref="resetButton"
+          @click="resetTimer(this.currentSetting)"
+          class="timerButton resetButton"
+        >
+          Reset
+        </button>
+      </div>
+      <div class="optionsButtons">
+        <button
+          ref="pomoButton"
+          @click="startPom"
+          class="optionButton pomoButton"
+        >
+          Pomodoro
+        </button>
+        <button
+          ref="shortButton"
+          @click="startShort"
+          class="optionButton sBreakButton"
+        >
+          Short Break
+        </button>
+        <button
+          ref="longButton"
+          @click="startLong"
+          class="optionButton lBreakButton"
+        >
+          Long Break
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import MenuBar from "../components/MenuBar.vue";
+import ModalWindow from "../components/ModalWindow.vue";
 
 export default {
+  components: {
+    MenuBar,
+    ModalWindow,
+  },
   data() {
     return {
+      showModal: false,
+      modalOption: "",
+
       pomLength: 1500000,
       shortLength: 300000,
       longLength: 600000,
@@ -75,9 +87,18 @@ export default {
     };
   },
   methods: {
-    updateTitle(){
-      this.$emit('titleDynamic', this.millisToMinutesAndSeconds(this.time), this.settingNameDeterminer(this.currentSetting));
-    },  
+    toggleModal(setting) {
+      this.modalOption = setting;
+      this.showModal = !this.showModal;
+    },
+
+    updateTitle() {
+      this.$emit(
+        "titleDynamic",
+        this.millisToMinutesAndSeconds(this.time),
+        this.settingNameDeterminer(this.currentSetting)
+      );
+    },
 
     //timer button methods
     continueTimer() {
@@ -114,7 +135,7 @@ export default {
       }
     },
 
-    settingNameDeterminer(setting){
+    settingNameDeterminer(setting) {
       if (setting == 0) {
         return "Pomo";
       } else if (setting == 1) {
@@ -126,12 +147,12 @@ export default {
 
     timerHandler(setting) {
       this.pomoInterval = setInterval(() => {
-          this.time -= 1000;
-          this.updateTitle();
-          if (this.time < 0) {
-            this.resetTimer(setting);
-          }
-        }, 1000);
+        this.time -= 1000;
+        this.updateTitle();
+        if (this.time < 0) {
+          this.resetTimer(setting);
+        }
+      }, 1000);
     },
 
     resetTimer(setting) {
@@ -142,9 +163,8 @@ export default {
       clearInterval(this.pomoInterval);
       this.timerOn = false;
       this.time = this.lengthRetriever(setting);
-      this.updateTitle()
+      this.updateTitle();
     },
-
 
     startTimer(setting) {
       this.updateTitle();

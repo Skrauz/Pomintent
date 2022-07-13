@@ -32,7 +32,7 @@ nav {
   display: flex;
   justify-content: space-evenly;
 }
-nav a {
+nav a, nav button {
   font-weight: bold;
   color: rgb(9, 9, 9);
   padding: 10px 20px;
@@ -42,7 +42,7 @@ nav a {
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
 }
-nav a:hover {
+nav a:hover, nav button:hover {
   background-color: #e6e6e6;
   transition: background-color 0.1s ease-in-out;
 }
@@ -65,10 +65,10 @@ nav a.router-link-exact-active {
   color: rgb(71, 57, 57);
 }
 #timer input {
-  background-color: rgb(91, 149, 182);
+  background-color: rgb(255, 255, 255);
   color: rgb(9, 9, 9);
   border-radius: 20px;
-  border: none;
+  border: solid rgb(91, 149, 182) 2px;
   padding: 10px 20px;
   margin: 5px;
   width: 200px;
@@ -108,19 +108,22 @@ nav a.router-link-exact-active {
   margin: 0 0 20px 0;
 }
 
-/* .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: $secondary-color;
+#backdrop {
+  top: 0;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
 
-    p {
-        margin: 8px;
-    }
-
-    a {
-        text-decoration: none;
-        font-style: bold;
-        color: $primary-font-color;
-    }
-} */
+.modalWindow {
+  width: 400px;
+  padding: 20px;
+  margin: 20px auto;
+  background: white;
+  border-radius: 10px;
+  text-align: left;
+}
+.modalWindow h1 {
+  text-align: center;
+}

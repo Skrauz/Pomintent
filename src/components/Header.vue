@@ -1,8 +1,10 @@
 <template>
   <div class="header">
+    <router-link to="/">
     <h1>
       {{ title }}
     </h1>
+    </router-link>
     <h2>
       {{ subtitle }}
     </h2>

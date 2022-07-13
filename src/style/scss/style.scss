@@ -51,7 +51,7 @@ nav {
     display: flex;
     justify-content: space-evenly;
 
-    a {
+    a, button {
         font-weight: bold;
         color: $primary-font-color;
         padding: 10px 20px;
@@ -74,4 +74,4 @@ nav {
 }
 
 @import 'timer';
-@import 'footer';
+@import 'modal';

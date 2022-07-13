@@ -12,10 +12,10 @@
     }
 
     input {
-        background-color: $secondary-color;
+        background-color: $primary-color;
         color: $primary-font-color;
         border-radius: 20px;
-        border: none;
+        border: solid $secondary-color 2px;
         padding: 10px 20px;
         margin: 5px;
         width: 200px;
