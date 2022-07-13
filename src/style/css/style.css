@@ -108,19 +108,22 @@ nav a.router-link-exact-active {
   margin: 0 0 20px 0;
 }
 
-/* .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: $secondary-color;
+#backdrop {
+  top: 0;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
 
-    p {
-        margin: 8px;
-    }
-
-    a {
-        text-decoration: none;
-        font-style: bold;
-        color: $primary-font-color;
-    }
-} */
+.modalWindow {
+  width: 400px;
+  padding: 20px;
+  margin: 20px auto;
+  background: white;
+  border-radius: 10px;
+  text-align: left;
+}
+.modalWindow h1 {
+  text-align: center;
+}

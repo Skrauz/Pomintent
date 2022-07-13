@@ -19,6 +19,11 @@ export default {
     ],
     components: {
         Settings, Log, Faq
+    },
+    methods: {
+      closeModalWindow(){
+        this.$emit('modalCloseSignal')
+      }
     }
 }
 </script>

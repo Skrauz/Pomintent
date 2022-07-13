@@ -1,7 +1,7 @@
 <template>
   <div id="timerPage">
     <MenuBar @modalSignal="toggleModal" />
-    <ModalWindow v-if="showModal" :option="modalOption" />
+    <ModalWindow v-if="showModal" :option="modalOption" @modalCloseSignal="toggleModal" />
     <div id="timer">
       <input
         type="text"
