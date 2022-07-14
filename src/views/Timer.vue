@@ -1,7 +1,12 @@
 <template>
   <div id="timerPage">
     <MenuBar @modalSignal="toggleModal" />
-    <ModalWindow v-if="showModal" :option="modalOption" @modalCloseSignal="toggleModal" />
+    <ModalWindow
+      v-if="showModal"
+      :option="modalOption"
+      @modalCloseSignal="toggleModal"
+      @setting="applySettings"
+    />
     <div id="timer">
       <input
         type="text"
@@ -78,7 +83,7 @@ export default {
 
       pomLength: 1500000,
       shortLength: 300000,
-      longLength: 600000,
+      longLength: 1200000,
       currentSetting: 0,
       time: 1500000,
       pomoInterval: null,
@@ -87,6 +92,14 @@ export default {
     };
   },
   methods: {
+    applySettings(pomoLength, shortLength, longLength) {
+      this.time = pomoLength * 60000;
+      this.pomLength = pomoLength * 60000;
+      this.shortLength = shortLength * 60000;
+      this.longLength = longLength * 60000;
+      this.updateTitle()
+    },
+
     toggleModal(setting) {
       this.modalOption = setting;
       this.showModal = !this.showModal;
