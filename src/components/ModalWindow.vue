@@ -1,7 +1,8 @@
 <template>
   <div id="backdrop" @click.self="closeModalWindow">
     <div class="modalWindow">
-        <Settings v-if="option == 'settings'" />
+        <p @click="closeModalWindow" id="exitButton"><b>X</b></p>
+        <Settings v-if="option == 'settings'" @modalCloseSignal="closeModalWindow" @settings="applySettings" />
         <Log v-if="option == 'log'" />
         <Faq v-if="option == 'faq'" />
     </div>
@@ -21,6 +22,9 @@ export default {
         Settings, Log, Faq
     },
     methods: {
+      applySettings(pomoLength, shortLength, longLength){
+        this.$emit('setting', pomoLength, shortLength, longLength)
+      },
       closeModalWindow(){
         this.$emit('modalCloseSignal')
       }

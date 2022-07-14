@@ -11,11 +11,44 @@
         text-align: center;
     }
 
-    width: 400px;
+    max-width: 400px;
     padding: 20px;
     margin: 20px auto;
     background: white;
     border-radius: 10px;
 
     text-align: left;
+
+    button{
+        margin: 15px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: solid 2px $secondary-color;
+    }
+
+    #exitButton{
+        position: relative;
+        padding: 5px;
+        border-radius: 10px;
+        top: 45px;
+        left: 90%;
+        width: 20px;
+        background-color: #ddd;
+        margin-left: 10px;
+        margin-top: -50px;
+        text-align: center;
+        cursor: pointer;
+        
+
+        &:hover {
+            background-color: $selected-button;
+            transition: background-color 0.1s ease-in-out;
+        }
+    }
   }
+
+#settingsModal{
+    input {
+        border-radius: 10px;
+    }
+}
