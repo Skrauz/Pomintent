@@ -3,7 +3,7 @@
     <h1>Settings</h1>
     <p>
       Autostart pomodoros and breaks (long break after every 4th pomodoro):
-      <input type="checkbox" />
+      <input type="checkbox" v-model="autostart" />
     </p>
     <p>Pomodoro length (minutes):</p>
     <input type="number" v-model="pomoLength" min="1" />
@@ -22,31 +22,26 @@
 export default {
   data() {
     return {
+      autostart: false,
       pomoLength: null,
       shortLength: null,
       longLength: null,
     };
   },
   methods: {
-    restoreDefault(){
-      this.$emit(
-          "settings",
-          25,
-          5,
-          20,
-        );
-        this.$emit("modalCloseSignal");
+    restoreDefault() {
+      this.$emit("settings", 25, 5, 20, false);
+      this.$emit("modalCloseSignal");
     },
 
     saveSettingsAndClose() {
-      if (this.pomoLength && this.shortLength && this.longLength) {
-        this.$emit(
-          "settings",
-          this.pomoLength,
-          this.shortLength,
-          this.longLength,
-        );
-      }
+      this.$emit(
+        "settings",
+        this.pomoLength,
+        this.shortLength,
+        this.longLength,
+        this.autostart
+      );
       this.$emit("modalCloseSignal");
     },
   },
