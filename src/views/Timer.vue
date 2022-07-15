@@ -80,6 +80,9 @@ export default {
     return {
       showModal: false,
       modalOption: "",
+      autostart: false,
+
+      pomoCounter: 0,
 
       pomLength: 1500000,
       shortLength: 300000,
@@ -92,12 +95,19 @@ export default {
     };
   },
   methods: {
-    applySettings(pomoLength, shortLength, longLength) {
-      this.time = pomoLength * 60000;
-      this.pomLength = pomoLength * 60000;
-      this.shortLength = shortLength * 60000;
-      this.longLength = longLength * 60000;
-      this.updateTitle()
+    applySettings(pomoLength, shortLength, longLength, autostart) {
+      if (pomoLength) {
+        this.pomLength = pomoLength * 60000;
+      }
+      if (shortLength) {
+        this.shortLength = shortLength * 60000;
+      }
+      if (longLength) {
+        this.longLength = longLength * 60000;
+      }
+      this.autostart = autostart;
+      this.updateTitle();
+      this.time = this.lengthRetriever(this.currentSetting);
     },
 
     toggleModal(setting) {
@@ -163,7 +173,21 @@ export default {
         this.time -= 1000;
         this.updateTitle();
         if (this.time < 0) {
-          this.resetTimer(setting);
+          if (this.autostart) {
+            if (setting == 0) {
+              if (this.pomoCounter >= 3) {
+                this.startLong();
+                this.pomoCounter = 0;
+              } else {
+                this.startShort();
+              }
+            } else {
+              this.startPom();
+              this.pomoCounter++;
+            }
+          } else {
+            this.resetTimer(setting);
+          }
         }
       }, 1000);
     },
