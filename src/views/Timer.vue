@@ -217,9 +217,9 @@ export default {
         this.updateTitle();
         if (this.time < 0) {
           this.showNotification(setting);
-          var audio = new Audio(require(this.sound))
+          var sound = new Audio(require('../assets/bell1.flac'));
+          sound.play();
           /* this.logSession() */
-          audio.play()
           if (this.autostart) {
             if (setting == 0) {
               if (this.pomoCounter >= 3) {

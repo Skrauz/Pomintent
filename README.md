@@ -18,4 +18,4 @@ npm run build
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-Uses the vue cookies - https://github.com/cmp-cc/vue-cookies#readme
+Uses vue cookies - https://github.com/cmp-cc/vue-cookies#readme
