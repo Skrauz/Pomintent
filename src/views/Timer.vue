@@ -72,6 +72,31 @@ import MenuBar from "../components/MenuBar.vue";
 import ModalWindow from "../components/ModalWindow.vue";
 
 export default {
+  created() {
+    //notification permissions
+    if (Notification.permission === "granted") {
+    } else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then((permission) => {
+        console.log(permission);
+      });
+    }
+
+    console.log($cookies.get("cPomoLength"));
+
+    /* if($cookies.get('cPomoLength')){
+      var cookieExists = true
+    }
+
+    console.log(cookieExists) */
+
+    //applying settings from previous visits
+    this.applySettings(
+      $cookies.get("cPomoLength"),
+      $cookies.get("cShortLength"),
+      $cookies.get("cLongLength"),
+      $cookies.get("cAutostart")
+    );
+  },
   components: {
     MenuBar,
     ModalWindow,
@@ -84,6 +109,8 @@ export default {
 
       pomoCounter: 0,
 
+      sound: '../assets/bell1.flac',
+
       pomLength: 1500000,
       shortLength: 300000,
       longLength: 1200000,
@@ -95,17 +122,33 @@ export default {
     };
   },
   methods: {
+    showNotification(setting) {
+      if (setting == 0) {
+        const notification = new Notification("Pomodoro completed", {
+          body: "Pomodoro timer hit 0, time for a break!",
+        });
+      } else if (setting == 1 || setting == 2) {
+        const notification = new Notification("Break completed", {
+          body: "Break timer hit 0, time to get back to work!",
+        });
+      }
+    },
+
     applySettings(pomoLength, shortLength, longLength, autostart) {
       if (pomoLength) {
-        this.pomLength = pomoLength * 60000;
+        this.pomLength = pomoLength * 600;
+        $cookies.set("cPomoLength", pomoLength);
       }
       if (shortLength) {
-        this.shortLength = shortLength * 60000;
+        this.shortLength = shortLength * 600;
+        $cookies.set("cShortLength", shortLength);
       }
       if (longLength) {
-        this.longLength = longLength * 60000;
+        this.longLength = longLength * 600;
+        $cookies.set("cLongLength", longLength);
       }
       this.autostart = autostart;
+      $cookies.set("cAutostart", autostart);
       this.updateTitle();
       this.time = this.lengthRetriever(this.currentSetting);
     },
@@ -173,6 +216,10 @@ export default {
         this.time -= 1000;
         this.updateTitle();
         if (this.time < 0) {
+          this.showNotification(setting);
+          var sound = new Audio(require('../assets/bell1.flac'));
+          sound.play();
+          /* this.logSession() */
           if (this.autostart) {
             if (setting == 0) {
               if (this.pomoCounter >= 3) {
