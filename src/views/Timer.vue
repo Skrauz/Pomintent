@@ -109,6 +109,8 @@ export default {
 
       pomoCounter: 0,
 
+      sound: '../assets/bell1.flac',
+
       pomLength: 1500000,
       shortLength: 300000,
       longLength: 1200000,
@@ -134,15 +136,15 @@ export default {
 
     applySettings(pomoLength, shortLength, longLength, autostart) {
       if (pomoLength) {
-        this.pomLength = pomoLength * 60000;
+        this.pomLength = pomoLength * 600;
         $cookies.set("cPomoLength", pomoLength);
       }
       if (shortLength) {
-        this.shortLength = shortLength * 60000;
+        this.shortLength = shortLength * 600;
         $cookies.set("cShortLength", shortLength);
       }
       if (longLength) {
-        this.longLength = longLength * 60000;
+        this.longLength = longLength * 600;
         $cookies.set("cLongLength", longLength);
       }
       this.autostart = autostart;
@@ -215,6 +217,9 @@ export default {
         this.updateTitle();
         if (this.time < 0) {
           this.showNotification(setting);
+          var audio = new Audio(require(this.sound))
+          /* this.logSession() */
+          audio.play()
           if (this.autostart) {
             if (setting == 0) {
               if (this.pomoCounter >= 3) {
