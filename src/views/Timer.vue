@@ -72,6 +72,14 @@ import MenuBar from "../components/MenuBar.vue";
 import ModalWindow from "../components/ModalWindow.vue";
 
 export default {
+  created() {
+    if (Notification.permission === "granted") {
+    } else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then((permission) => {
+        console.log(permission);
+      });
+    }
+  },
   components: {
     MenuBar,
     ModalWindow,
@@ -84,9 +92,9 @@ export default {
 
       pomoCounter: 0,
 
-      pomLength: 1500000,
-      shortLength: 300000,
-      longLength: 1200000,
+      pomLength: 15000,
+      shortLength: 3000,
+      longLength: 12000,
       currentSetting: 0,
       time: 1500000,
       pomoInterval: null,
@@ -95,6 +103,18 @@ export default {
     };
   },
   methods: {
+    showNotification(setting) {
+      if (setting == 0) {
+        const notification = new Notification("Pomodoro completed", {
+          body: "Pomodoro timer hit 0, time for a break!",
+        });
+      } else if (setting == 1 || setting == 2) {
+        const notification = new Notification("Break completed", {
+          body: "Break timer hit 0, time to get back to work!",
+        });
+      }
+    },
+
     applySettings(pomoLength, shortLength, longLength, autostart) {
       if (pomoLength) {
         this.pomLength = pomoLength * 60000;
@@ -173,6 +193,7 @@ export default {
         this.time -= 1000;
         this.updateTitle();
         if (this.time < 0) {
+          this.showNotification(setting);
           if (this.autostart) {
             if (setting == 0) {
               if (this.pomoCounter >= 3) {
