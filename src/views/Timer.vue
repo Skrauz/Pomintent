@@ -92,9 +92,9 @@ export default {
 
       pomoCounter: 0,
 
-      pomLength: 15000,
-      shortLength: 3000,
-      longLength: 12000,
+      pomLength: 1500000,
+      shortLength: 300000,
+      longLength: 1200000,
       currentSetting: 0,
       time: 1500000,
       pomoInterval: null,
