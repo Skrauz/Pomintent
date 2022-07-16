@@ -11,6 +11,27 @@
     <input type="number" v-model="shortLength" min="1" />
     <p>Long Break length (minutes):</p>
     <input type="number" v-model="longLength" min="1" />
+    <br>
+    <p>Sound select:
+    <select v-model="sound">
+      <option value=1>
+        Bell 1
+      </option>
+      <option value=2>
+        Bell 2
+      </option>
+      <option value=3>
+        Bell 3
+      </option>
+      <option value=4>
+        Bell 4
+      </option>
+    </select></p>
+    <p>
+      Sound volume:
+      <input type="range" min="1" max="100" class="slider" v-model="soundVolume">
+      {{soundVolume}}
+    </p>
 
     <br />
     <button @click="saveSettingsAndClose">OK</button>
@@ -26,11 +47,14 @@ export default {
       pomoLength: null,
       shortLength: null,
       longLength: null,
+      sound: null,
+      soundVolume: null
     };
   },
   methods: {
+
     restoreDefault() {
-      this.$emit("settings", 25, 5, 20, false);
+      this.$emit("settings", 25, 5, 20, false, 1, 0.75);
       this.$emit("modalCloseSignal");
     },
 
@@ -40,7 +64,9 @@ export default {
         this.pomoLength,
         this.shortLength,
         this.longLength,
-        this.autostart
+        this.autostart,
+        this.sound,
+        this.soundVolume
       );
       this.$emit("modalCloseSignal");
     },

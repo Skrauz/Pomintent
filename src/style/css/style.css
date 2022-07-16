@@ -150,6 +150,23 @@ nav a.router-link-exact-active {
   background-color: #e6e6e6;
   transition: background-color 0.1s ease-in-out;
 }
+.modalWindow .slider {
+  margin-top: 5px;
+  position: relative;
+  padding: 5px;
+  -webkit-appearance: none; /* Override default CSS styles */
+  -moz-appearance: none;
+       appearance: none;
+  width: 200px; /* Full-width */
+  height: 0px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */ /* 0.2 seconds transition on hover */
+  transition: opacity 0.2s;
+}
+.modalWindow .slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
 
 #settingsModal input {
   border-radius: 10px;
