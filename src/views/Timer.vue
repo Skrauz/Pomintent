@@ -73,12 +73,29 @@ import ModalWindow from "../components/ModalWindow.vue";
 
 export default {
   created() {
+    //notification permissions
     if (Notification.permission === "granted") {
     } else if (Notification.permission !== "denied") {
       Notification.requestPermission().then((permission) => {
         console.log(permission);
       });
     }
+
+    console.log($cookies.get("cPomoLength"));
+
+    /* if($cookies.get('cPomoLength')){
+      var cookieExists = true
+    }
+
+    console.log(cookieExists) */
+
+    //applying settings from previous visits
+    this.applySettings(
+      $cookies.get("cPomoLength"),
+      $cookies.get("cShortLength"),
+      $cookies.get("cLongLength"),
+      $cookies.get("cAutostart")
+    );
   },
   components: {
     MenuBar,
@@ -118,14 +135,18 @@ export default {
     applySettings(pomoLength, shortLength, longLength, autostart) {
       if (pomoLength) {
         this.pomLength = pomoLength * 60000;
+        $cookies.set("cPomoLength", pomoLength);
       }
       if (shortLength) {
         this.shortLength = shortLength * 60000;
+        $cookies.set("cShortLength", shortLength);
       }
       if (longLength) {
         this.longLength = longLength * 60000;
+        $cookies.set("cLongLength", longLength);
       }
       this.autostart = autostart;
+      $cookies.set("cAutostart", autostart);
       this.updateTitle();
       this.time = this.lengthRetriever(this.currentSetting);
     },
