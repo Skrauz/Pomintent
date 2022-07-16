@@ -158,15 +158,15 @@ export default {
 
     applySettings(pomoLength, shortLength, longLength, autostart, sound, soundVolume) {
       if (pomoLength) {
-        this.pomLength = pomoLength * 600;
+        this.pomLength = pomoLength * 60000;
         $cookies.set("cPomoLength", pomoLength);
       }
       if (shortLength) {
-        this.shortLength = shortLength * 600;
+        this.shortLength = shortLength * 60000;
         $cookies.set("cShortLength", shortLength);
       }
       if (longLength) {
-        this.longLength = longLength * 600;
+        this.longLength = longLength * 60000;
         $cookies.set("cLongLength", longLength);
       }
       if (sound) {
