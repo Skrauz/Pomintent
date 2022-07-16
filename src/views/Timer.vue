@@ -81,7 +81,7 @@ export default {
       });
     }
 
-    console.log($cookies.get("cPomoLength"));
+    /* console.log($cookies.get("cPomoLength")); */
 
     /* if($cookies.get('cPomoLength')){
       var cookieExists = true
@@ -94,7 +94,9 @@ export default {
       $cookies.get("cPomoLength"),
       $cookies.get("cShortLength"),
       $cookies.get("cLongLength"),
-      $cookies.get("cAutostart")
+      $cookies.get("cAutostart"),
+      $cookies.get("cSound"),
+      $cookies.get("cSoundVolume")
     );
   },
   components: {
@@ -103,14 +105,17 @@ export default {
   },
   data() {
     return {
+      //modal windows
       showModal: false,
       modalOption: "",
-      autostart: false,
 
+      //sounds
+      sound: 1,
+      soundVolume: 0.75,
+
+      //timer
       pomoCounter: 0,
-
-      sound: '../assets/bell1.flac',
-
+      autostart: false,
       pomLength: 1500000,
       shortLength: 300000,
       longLength: 1200000,
@@ -118,10 +123,27 @@ export default {
       time: 1500000,
       pomoInterval: null,
       timerOn: false,
+
+      //logs
       intent: "",
     };
   },
   methods: {
+    playSound() {
+      var sound;
+      if (this.sound == 1) {
+        sound = new Audio(require("../assets/bell1.flac"));
+      } else if (this.sound == 2) {
+        sound = new Audio(require("../assets/bell2.wav"));
+      } else if (this.sound == 3) {
+        sound = new Audio(require("../assets/bell3.wav"));
+      } else if (this.sound == 4) {
+        sound = new Audio(require("../assets/bell4.wav"));
+      }
+      sound.volume = this.soundVolume;
+      sound.play();
+    },
+
     showNotification(setting) {
       if (setting == 0) {
         const notification = new Notification("Pomodoro completed", {
@@ -134,18 +156,26 @@ export default {
       }
     },
 
-    applySettings(pomoLength, shortLength, longLength, autostart) {
+    applySettings(pomoLength, shortLength, longLength, autostart, sound, soundVolume) {
       if (pomoLength) {
-        this.pomLength = pomoLength * 600;
+        this.pomLength = pomoLength * 60000;
         $cookies.set("cPomoLength", pomoLength);
       }
       if (shortLength) {
-        this.shortLength = shortLength * 600;
+        this.shortLength = shortLength * 60000;
         $cookies.set("cShortLength", shortLength);
       }
       if (longLength) {
-        this.longLength = longLength * 600;
+        this.longLength = longLength * 60000;
         $cookies.set("cLongLength", longLength);
+      }
+      if (sound) {
+        this.sound = sound;
+        $cookies.set("cSound", sound);
+      }
+      if (soundVolume) {
+        this.soundVolume = soundVolume / 100;
+        $cookies.set("cSoundVolume", soundVolume);
       }
       this.autostart = autostart;
       $cookies.set("cAutostart", autostart);
@@ -217,8 +247,7 @@ export default {
         this.updateTitle();
         if (this.time < 0) {
           this.showNotification(setting);
-          var sound = new Audio(require('../assets/bell1.flac'));
-          sound.play();
+          this.playSound();
           /* this.logSession() */
           if (this.autostart) {
             if (setting == 0) {

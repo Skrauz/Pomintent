@@ -45,6 +45,25 @@
             transition: background-color 0.1s ease-in-out;
         }
     }
+
+    .slider {
+        margin-top: 5px;
+        position: relative;
+        padding: 5px;
+        -webkit-appearance: none;  /* Override default CSS styles */
+        appearance: none;
+        width: 200px; /* Full-width */
+        height: 0px; /* Specified height */
+        background: #d3d3d3; /* Grey background */
+        outline: none; /* Remove outline */
+        opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+        -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+        transition: opacity .2s;
+        &:hover {
+            opacity: 1; /* Fully shown on mouse-over */
+          }
+    }
+    
   }
 
 #settingsModal{

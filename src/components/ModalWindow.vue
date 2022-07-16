@@ -22,8 +22,8 @@ export default {
         Settings, Log, Faq
     },
     methods: {
-      applySettings(pomoLength, shortLength, longLength, autostart){
-        this.$emit('setting', pomoLength, shortLength, longLength, autostart)
+      applySettings(pomoLength, shortLength, longLength, autostart, sound, soundVolume){
+        this.$emit('setting', pomoLength, shortLength, longLength, autostart, sound, soundVolume)
       },
       closeModalWindow(){
         this.$emit('modalCloseSignal')
