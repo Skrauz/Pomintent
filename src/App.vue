@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     renderDynamicTitle(time, settingName){
-      document.title = settingName + ' (' + time +')';
+      document.title = '(' + time +') ' + settingName;
     }
   }
 };

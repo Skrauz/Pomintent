@@ -63,6 +63,7 @@
           Long Break
         </button>
       </div>
+      <!-- <button @click="testMethod">test</button> -->
     </div>
   </div>
 </template>
@@ -126,6 +127,8 @@ export default {
 
       //logs
       intent: "",
+      sessionId: 0,
+      log: [],
     };
   },
   methods: {
@@ -156,7 +159,14 @@ export default {
       }
     },
 
-    applySettings(pomoLength, shortLength, longLength, autostart, sound, soundVolume) {
+    applySettings(
+      pomoLength,
+      shortLength,
+      longLength,
+      autostart,
+      sound,
+      soundVolume
+    ) {
       if (pomoLength) {
         this.pomLength = pomoLength * 60000;
         $cookies.set("cPomoLength", pomoLength);
@@ -189,11 +199,19 @@ export default {
     },
 
     updateTitle() {
-      this.$emit(
-        "titleDynamic",
-        this.millisToMinutesAndSeconds(this.time),
-        this.settingNameDeterminer(this.currentSetting)
-      );
+      if (this.intent) {
+        this.$emit(
+          "titleDynamic",
+          this.millisToMinutesAndSeconds(this.time),
+          this.intent
+        );
+      } else {
+        this.$emit(
+          "titleDynamic",
+          this.millisToMinutesAndSeconds(this.time),
+          this.settingNameDeterminer(this.currentSetting)
+        );
+      }
     },
 
     //timer button methods
@@ -241,15 +259,31 @@ export default {
       }
     },
 
+    /* logSession(setting){
+      this.log.push({
+        "id": this.sessionId,
+        "name": this.settingNameDeterminer(setting) + " (" + this.intent + ")",
+        "length": this.millisToMinutesAndSeconds(this.lengthRetriever(setting)),
+        "date": new Date().format('d-m-Y h:i:s')
+      })
+      this.sessionId ++;
+    },
+
+    testMethod(){
+      this.logSession(this.currentSetting);
+      console.log(this.log);
+      $cookies.set('test',this.log);
+      console.log($cookies.get('test'));
+    }, */
+
     timerHandler(setting) {
       this.pomoInterval = setInterval(() => {
         this.time -= 1000;
         this.updateTitle();
         if (this.time < 0) {
-
           this.showNotification(setting);
           this.playSound();
-          this.logSession(setting)
+          this.logSession(setting);
 
           if (this.autostart) {
             if (setting == 0) {

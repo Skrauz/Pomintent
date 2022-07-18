@@ -35,6 +35,7 @@ nav {
 nav a, nav button {
   font-weight: bold;
   color: rgb(9, 9, 9);
+  border: solid rgb(91, 149, 182) 2px;
   padding: 10px 20px;
   margin: 0 5px;
   text-decoration: none;
@@ -67,11 +68,12 @@ nav a.router-link-exact-active {
 #timer input {
   background-color: rgb(255, 255, 255);
   color: rgb(9, 9, 9);
+  max-width: 470px;
+  width: 70%;
   border-radius: 20px;
   border: solid rgb(91, 149, 182) 2px;
   padding: 10px 20px;
   margin: 5px;
-  width: 200px;
 }
 #timer button {
   cursor: pointer;
