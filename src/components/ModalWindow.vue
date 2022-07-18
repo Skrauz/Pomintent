@@ -3,7 +3,7 @@
     <div class="modalWindow">
         <p @click="closeModalWindow" id="exitButton"><b>X</b></p>
         <Settings v-if="option == 'settings'" @modalCloseSignal="closeModalWindow" @settings="applySettings" />
-        <Log v-if="option == 'log'" />
+        <Log v-if="option == 'log'" :logs="log" />
         <Faq v-if="option == 'faq'" />
     </div>
   </div>
@@ -16,7 +16,8 @@ import Faq from './modalComponents/Fa.vue'
 
 export default {
     props: [
-        'option'
+        'option',
+        'log'
     ],
     components: {
         Settings, Log, Faq

@@ -119,6 +119,8 @@ nav a.router-link-exact-active {
 }
 
 .modalWindow {
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
   max-width: 400px;
   padding: 20px;
   margin: 20px auto;
@@ -176,4 +178,12 @@ nav a.router-link-exact-active {
 
 #logPage #emptyLogInfo {
   text-align: center;
+}
+#logPage .log {
+  border-radius: 5px;
+  margin: 5px 0;
+  border: solid 2px rgb(91, 149, 182);
+}
+#logPage .log p {
+  margin: 0 5px;
 }
