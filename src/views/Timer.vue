@@ -118,9 +118,9 @@ export default {
       //timer
       pomoCounter: 0,
       autostart: false,
-      pomLength: 15000,
-      shortLength: 3000,
-      longLength: 12000,
+      pomLength: 1500000,
+      shortLength: 300000,
+      longLength: 1200000,
       currentSetting: 0,
       time: 1500000,
       pomoInterval: null,
@@ -169,15 +169,15 @@ export default {
       soundVolume
     ) {
       if (pomoLength) {
-        this.pomLength = pomoLength * 600;
+        this.pomLength = pomoLength * 60000;
         $cookies.set("cPomoLength", pomoLength);
       }
       if (shortLength) {
-        this.shortLength = shortLength * 600;
+        this.shortLength = shortLength * 60000;
         $cookies.set("cShortLength", shortLength);
       }
       if (longLength) {
-        this.longLength = longLength * 600;
+        this.longLength = longLength * 60000;
         $cookies.set("cLongLength", longLength);
       }
       if (sound) {
