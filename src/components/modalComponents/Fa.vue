@@ -36,7 +36,24 @@
       <b>What is Pomintent</b>
     </p>
     <p>
-      Pomintent is a simple and customizable Pomodoro Timer written mainly in Vue.js. You are able to set your own custom intervals, continue, pause and reset the timer. In addition, you can log your sessions and change the settings; like sound volume and type. You can also write down the intent of your work in the input field, and it will be logged in the Log tab.
+      Pomintent is a simple and customizable Pomodoro Timer written mainly in Vue.js. You are able to:
+      <ul>
+        <li>
+          Play, pause and reset the timer
+        </li>
+        <li>
+          Set custom intervals
+        </li>
+        <li>
+          Adjust sound type and volume
+        </li>
+        <li>
+          Receive desktop notifications
+        </li>
+        <li>
+          Log your work in the Log tab
+        </li>
+      </ul>
     </p>
   </div>
 </template>

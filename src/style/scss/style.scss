@@ -54,6 +54,7 @@ nav {
     a, button {
         font-weight: bold;
         color: $primary-font-color;
+        border: solid $secondary-color 2px;
         padding: 10px 20px;
         margin: 0 5px;
         text-decoration: none;
