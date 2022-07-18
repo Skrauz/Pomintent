@@ -4,6 +4,7 @@
     <ModalWindow
       v-if="showModal"
       :option="modalOption"
+      :log="log"
       @modalCloseSignal="toggleModal"
       @setting="applySettings"
     />
@@ -117,9 +118,9 @@ export default {
       //timer
       pomoCounter: 0,
       autostart: false,
-      pomLength: 1500000,
-      shortLength: 300000,
-      longLength: 1200000,
+      pomLength: 15000,
+      shortLength: 3000,
+      longLength: 12000,
       currentSetting: 0,
       time: 1500000,
       pomoInterval: null,
@@ -168,15 +169,15 @@ export default {
       soundVolume
     ) {
       if (pomoLength) {
-        this.pomLength = pomoLength * 60000;
+        this.pomLength = pomoLength * 600;
         $cookies.set("cPomoLength", pomoLength);
       }
       if (shortLength) {
-        this.shortLength = shortLength * 60000;
+        this.shortLength = shortLength * 600;
         $cookies.set("cShortLength", shortLength);
       }
       if (longLength) {
-        this.longLength = longLength * 60000;
+        this.longLength = longLength * 600;
         $cookies.set("cLongLength", longLength);
       }
       if (sound) {
@@ -259,21 +260,21 @@ export default {
       }
     },
 
-    /* logSession(setting){
+    logSession(setting) {
+      var now = new Date();
       this.log.push({
-        "id": this.sessionId,
-        "name": this.settingNameDeterminer(setting) + " (" + this.intent + ")",
-        "length": this.millisToMinutesAndSeconds(this.lengthRetriever(setting)),
-        "date": new Date().format('d-m-Y h:i:s')
-      })
-      this.sessionId ++;
+        id: this.sessionId,
+        name: this.settingNameDeterminer(setting) + " (" + this.intent + ")",
+        length: this.millisToMinutesAndSeconds(this.lengthRetriever(setting)),
+        date:
+          now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + ' ' + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds(),
+      });
+      this.sessionId++;
     },
 
-    testMethod(){
+    /* testMethod() {
       this.logSession(this.currentSetting);
       console.log(this.log);
-      $cookies.set('test',this.log);
-      console.log($cookies.get('test'));
     }, */
 
     timerHandler(setting) {

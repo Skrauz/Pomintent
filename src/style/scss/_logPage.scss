@@ -2,4 +2,14 @@
     #emptyLogInfo{
         text-align: center;
     }
+
+    .log {
+        border-radius: 5px;
+        margin: 5px 0;
+        border: solid 2px $secondary-color;
+        
+        p {
+            margin: 0 5px
+        }
+    }
 }
