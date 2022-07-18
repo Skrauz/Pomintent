@@ -246,9 +246,11 @@ export default {
         this.time -= 1000;
         this.updateTitle();
         if (this.time < 0) {
+
           this.showNotification(setting);
           this.playSound();
-          /* this.logSession() */
+          this.logSession(setting)
+
           if (this.autostart) {
             if (setting == 0) {
               if (this.pomoCounter >= 3) {

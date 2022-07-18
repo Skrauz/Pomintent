@@ -171,3 +171,7 @@ nav a.router-link-exact-active {
 #settingsModal input {
   border-radius: 10px;
 }
+
+#logPage #emptyLogInfo {
+  text-align: center;
+}
