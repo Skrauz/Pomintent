@@ -12,6 +12,8 @@ What is the pomodoro technique?
 
 The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. More information: https://en.wikipedia.org/wiki/Pomodoro_Technique
 
+![Screenshot 2022-10-11 114249](https://user-images.githubusercontent.com/89979928/195056433-4e406896-8f16-4bde-99e2-4c2ed66a0fe6.png)
+
 ## Project setup
 ```
 npm install
