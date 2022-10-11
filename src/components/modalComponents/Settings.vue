@@ -58,11 +58,11 @@ export default {
         var soundToTest;
         if (this.sound == 1) {
           soundToTest = new Audio(require("../../assets/bell1.flac"));
-        } else if (this.sound == 2) {
+        } if (this.sound == 2) {
           soundToTest = new Audio(require("../../assets/bell2.wav"));
-        } else if (this.sound == 3) {
+        } if (this.sound == 3) {
           soundToTest = new Audio(require("../../assets/bell3.wav"));
-        } else if (this.sound == 4) {
+        } if (this.sound == 4) {
           soundToTest = new Audio(require("../../assets/bell4.wav"));
         }
         if (this.soundVolume) {
